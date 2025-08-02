@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/utils/prismaClient"
+import dotenv from "dotenv";
 
-const prisma = new PrismaClient();
+dotenv.config();
 
 // Load JWT secret from env
-const JWT_SECRET = process.env.JWT_SECRET || "asdfasdjaperofspdkfneirfpsdferifskdnfiri";
+const JWT_SECRET = process.env.SECURITY_KEY || "";
 
 export async function POST(req: NextRequest) {
     try {
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
 
         if (!token) {
             return NextResponse.json({ message: "Missing token." }, { status: 401 });
+        } else {
+            console.log("Token:", token);
         }
 
         // Decode token and extract email

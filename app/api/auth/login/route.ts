@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/app/lib/utils/prismaClient";
 
 export async function POST(req: NextRequest) {
     try {
@@ -24,7 +22,8 @@ export async function POST(req: NextRequest) {
         }
 
         const payload = { email: userEmail };
-        const securityKey = "asdfasdjaperofspdkfneirfpsdferifskdnfiri"; // you can also load from env
+        const securityKey = process.env.SECURITY_KEY || "";
+ 
         const token = jwt.sign(payload, securityKey);
 
         console.log("Generated JWT:", token);

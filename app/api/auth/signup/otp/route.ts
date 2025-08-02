@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyJWT } from "@/app/lib/utils/verifyJWT";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/utils/prismaClient";
+import dotenv from "dotenv";
 
-const prisma = new PrismaClient();
+dotenv.config();
 
 // const SECRET_KEY = process.env.SECURITY_KEY;
-const SECRET_KEY ="adskfjq23@$93-asdfo34q-HED39#S"
+const SECRET_KEY = process.env.SECURITY_KEY || "";
 
 export async function POST(req: NextRequest) {
     try {

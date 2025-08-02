@@ -3,17 +3,17 @@ import { generateOtp } from "@/app/lib/utils/generateOtp";
 import { sendEmail } from "@/app/lib/utils/sendEmail";
 import { verifyJWT } from "@/app/lib/utils/verifyJWT";
 import { cookies } from "next/headers";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/utils/prismaClient";
+import dotenv from "dotenv";
 
-const prisma = new PrismaClient();
+dotenv.config();
 
 export async function POST(req: NextRequest) {
     try {
         // Get token from cookies
         const cookieStore = await cookies();
         const token = cookieStore.get("token")?.value;
-        const SECRET_KEY = "asdfasdjaperofspdkfneirfpsdferifskdnfiri";
-
+        const SECRET_KEY = process.env.SECURITY_KEY || "";
 
         if (!token) {
             return NextResponse.json({ message: "No token found in cookies" }, { status: 401 });

@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/utils/prismaClient";
 import { generateOtp } from "@/app/lib/utils/generateOtp";
 import { sendEmail } from "@/app/lib/utils/sendEmail";
 import { generateJWT } from "@/app/lib/utils/generateJWT";
 
-const prisma = new PrismaClient();
-
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, email } = body;
+    // accessing data
+    const { name, email } = await req.json();
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -37,6 +35,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Send OTP via email
+    console.log("Sending email: ", email, "with OTP:", otp);
     await sendEmail(email, otp);
 
     // Generate JWT

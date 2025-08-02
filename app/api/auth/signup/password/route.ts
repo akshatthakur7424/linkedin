@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyJWT } from "@/app/lib/utils/verifyJWT";
 import { hashPassword } from "@/app/lib/utils/hashPassword";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/utils/prismaClient";
+import dotenv from "dotenv";
 
-const prisma = new PrismaClient();
+dotenv.config();
 
 export async function POST(req: Request) {
   try {
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "No token found in cookies." }, { status: 401 });
     }
 
-    const srkKey = "asdfasdjaperofspdkfneirfpsdferifskdnfiri";
+    const srkKey = process.env.SECURITY_KEY || "";
     const email = verifyJWT(token, srkKey);
 
     if (!email) {

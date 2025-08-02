@@ -1,4 +1,7 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const sendEmail = async (
   email: string,
@@ -34,3 +37,33 @@ export const sendEmail = async (
     console.error("Error sending email:", error);
   }
 };
+
+
+// import { Resend } from 'resend';
+
+// export const sendEmail = async (
+//   email: string,
+//   otpNumber: number
+// ): Promise<void> => {
+//   try {
+//     const apiKey = process.env.RESEND_API_KEY; 
+
+//     if (!apiKey) {
+//       throw new Error("Missing RESEND_API_KEY in environment variables.");
+//     }
+
+//     const resend = new Resend(apiKey);
+
+//     const response = await resend.emails.send({
+//       from: 'noreply@linkedin.com', 
+//       to: email,
+//       subject: 'Email Verification Code',
+//       html: `<p>Your email verification code is: <strong>${otpNumber}</strong></p>`,
+//     });
+
+//     console.log("Email sent:", response);
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//   }
+// };
+
