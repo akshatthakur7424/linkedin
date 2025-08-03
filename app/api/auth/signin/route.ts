@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
 
         if (isMatch) {
             return NextResponse.json({
+                status: "success",
                 message: "Authenticated successfully.",
                 token: token
             });
