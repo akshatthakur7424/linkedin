@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
-export const generateJWT = (userEmail: string): string | undefined => {
+export const generateJWT = (userEmail: string, userId: string): string | undefined => {
   try {
-    const payload = { email: userEmail };
+    const payload = { email: userEmail, id: userId };
     const securityKey = process.env.SECURITY_KEY;
 
     if (!securityKey) {
