@@ -17,7 +17,7 @@ export default function AuthenticationNavbar() {
     const isAuthenticationRoute = pathname.includes("/signup") || pathname.includes("/signin")
 
     return (
-        <nav className="bg-transparent flex items-center justify-between px-4 py-4 w-full md:px-[15%]">
+        <nav className="bg-[#f3f2ef] flex items-center justify-between px-4 py-4 w-full md:px-[15%]">
             {/* Logo  */}
             <div className="flex items-center cursor-pointer"
                 onClick={() => router.push("/")}

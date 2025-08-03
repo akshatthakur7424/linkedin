@@ -28,9 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthenticationNavbar />
-        <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2" >
-          {children}
+        <div className="w-screen h-screen flex flex-col justify-start items-center" >
+          <AuthenticationNavbar />
+          <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2" >
+            {children}
+          </div>
         </div>
       </body>
     </html>

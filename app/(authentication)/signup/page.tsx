@@ -16,7 +16,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center gap-2 p-4">
+        <div className="w-full h-full flex flex-col items-center justify-start gap-2 p-4">
 
             {/* Heading */}
             <p className="text-3xl m-2 my-4" >Make the most of your professional life</p>
