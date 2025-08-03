@@ -12,7 +12,11 @@ export default function SignIn() {
     }
 
     const handleSignIn = () => {
+        
+    }
 
+    const handleForgotPassword = () => {
+        router.push("/forgot-password")
     }
 
     return (
@@ -22,7 +26,7 @@ export default function SignIn() {
             <div className="h-auto w-1/4 flex flex-col items-center justify-start bg-white rounded-md p-4 px-6">
                 {/* Heading */}
                 <div className="w-full flex items-center justify-start" >
-                <p className="text-3xl font-semibold text-start py-2" >Sign in</p>
+                    <p className="text-3xl font-semibold text-start py-2" >Sign in</p>
                 </div>
 
                 {/* Sign Up Form  */}
@@ -35,9 +39,18 @@ export default function SignIn() {
                     <Input type="password" id="password" />
                 </div>
 
-                {/* Sign Up Button  */}
+                {/* Forgot Password */}
+                <div className="w-full flex items-center justify-start" >
+                    <button
+                        onClick={handleForgotPassword}
+                        className="text-sky-700 font-medium hover:underline cursor-pointer">
+                        Forgot Password?
+                    </button>
+                </div>
+
+                {/* Sign In Button  */}
                 <button
-                    className="w-full bg-sky-700 text-white rounded-full py-2 my-4 cursor-poiner"
+                    className="w-full bg-sky-700 text-white rounded-full py-2 my-4 cursor-pointer"
                     onClick={handleSignIn}
                 >
                     Sign in

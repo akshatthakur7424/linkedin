@@ -35,14 +35,16 @@ export default function AuthenticationNavbar() {
                 !isAuthenticationRoute && (
                     <div className="flex items-center gap-4">
                         <button
-                            className="text-md font-medium text-gray-700 hover:text-black cursor-pointer"
-                            onClick={handleSignUp}
-                        >Join now</button>
-                        <button
                             className="px-4 py-1.5 text-md font-medium border rounded-full border-blue-500 text-blue-500 hover:bg-blue-50 transition cursor-pointer"
                             onClick={handleSignIn}
                         >
                             Sign in
+                        </button>
+                        <button
+                            className="text-md font-medium text-gray-700 hover:text-black cursor-pointer"
+                            onClick={handleSignUp}
+                        >
+                            Join now
                         </button>
                     </div>
                 )
