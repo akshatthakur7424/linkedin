@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import prisma from "@/lib/prismaClient";
 import dotenv from "dotenv";
 import { hashPassword } from "@/lib/hashPassword";
+import { success } from "zod";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ export async function POST(req: NextRequest) {
         });
 
         return NextResponse.json({
+            success: true,
             message: "Password upadated successfully.",
         }, { status: 200 });
     } catch (error) {

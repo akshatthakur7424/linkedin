@@ -11,10 +11,9 @@ export default function EmailVerification() {
     const router = useRouter();
 
     const handleResendCode = async () => {
-        toast.success("Verification code resent");
         try {
-            const response = await axios.post("/api/auth/resend-otp", { otp: Number(otp) });
-            toast.success("Account created successfully!");
+            const response = await axios.get("/api/auth/resend-otp");
+            toast.success("Verification code resent");
             console.log(response)
         } catch (error: any) {
             toast.error(
@@ -38,6 +37,8 @@ export default function EmailVerification() {
             if (response.data.status == "success") {
                 toast.success("Account created successfully!");
                 router.push("/feed")
+            } else {
+                toast.error("Incorrect OTP")
             }
         } catch (error: any) {
             toast.error(

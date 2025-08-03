@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
     try {
         // Get token from cookies
         const cookieStore = await cookies();
@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
             message: "Another OTP has been sent to the same email successfully.",
+            success: true
         });
     } catch (error) {
         console.error("Error resending OTP:", error);

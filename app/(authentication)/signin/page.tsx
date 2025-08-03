@@ -33,6 +33,9 @@ export default function SignIn() {
         try {
             const response = await axios.post("/api/auth/signin", data);
             if (response.data.status == "success") {
+                const { token } = response.data;
+                // Save token to cookie or wherever needed
+                await axios.post("/api/auth/set-token", { token });
                 toast.success("Signed in successfully!");
                 router.push("/feed");
             } else {
