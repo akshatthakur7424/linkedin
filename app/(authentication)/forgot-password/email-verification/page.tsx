@@ -9,15 +9,10 @@ import { useRouter } from "next/navigation";
 export default function EmailVerification() {
     const [otp, setOtp] = useState("");
     const router = useRouter();
-
     const handleResendCode = async () => {
         try {
-            const response = await axios.post("/api/auth/resend-otp");
-            if (response.data.success) {
-                toast.success("Verification code resent");
-            } else {
-                toast.error("Failed to resend verification code");
-            }
+            const response = await axios.get("/api/auth/resend-otp");
+            toast.success("Verification code resent");
             console.log(response)
         } catch (error: any) {
             toast.error(
