@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: "Mini linkedin to create and publish posts.",
 };
 
-export default function RootLayout({
+export default function AuthenticationLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -30,13 +30,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ToastProvider />
-        <div className="w-screen h-screen flex flex-col justify-start items-center" >
-          <AuthenticationNavbar />
-          <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2" >
-            {children}
-          </div>
-        </div>
+        <main>
+          {children}
+        </main>
       </body>
-    </html>
+    </html >
   );
 }
