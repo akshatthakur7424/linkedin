@@ -1,7 +1,9 @@
+import AuthenticationHeroSection from "./components/authentication/hero-section";
+
 export default function Home() {
   return (
-    <div>
-      <p className="text-2xl text-center text-blue-900 m-20" >LinkedIn - Clone</p>
+    <div className="h-auto w-full flex flex-col items-center justify-center" >
+      <AuthenticationHeroSection />
     </div>
   );
 }
