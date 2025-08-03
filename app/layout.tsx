@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthenticationNavbar />
-        <div className="bg-[#f3f2ef] w-full h-auto flex flex-col items-center justify-center gap-2" >
+        <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2" >
           {children}
         </div>
       </body>
