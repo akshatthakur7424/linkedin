@@ -9,7 +9,7 @@ export default function AuthenticationHeroSection() {
         router.push("/signup");
     }
     const handleSignIn = () => {
-        router.push("/login");
+        router.push("/signin");
     }
 
     return (
