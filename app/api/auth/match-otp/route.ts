@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { verifyJWT } from "@/app/lib/utils/verifyJWT";
-import prisma from "@/app/lib/utils/prismaClient";
+import { verifyJWT } from "@/lib/verifyJWT";
+import prisma from "@/lib/prismaClient";
 import dotenv from "dotenv";
 
 dotenv.config();

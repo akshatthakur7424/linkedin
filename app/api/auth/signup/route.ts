@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/utils/prismaClient";
-import { generateOtp } from "@/app/lib/utils/generateOtp";
-import { sendEmail } from "@/app/lib/utils/sendEmail";
-import { generateJWT } from "@/app/lib/utils/generateJWT";
-import { hashPassword } from "@/app/lib/utils/hashPassword";
+import prisma from "@/lib/prismaClient";
+import { generateOtp } from "@/lib/generateOtp";
+import { sendEmail } from "@/lib/sendEmail";
+import { generateJWT } from "@/lib/generateJWT";
+import { hashPassword } from "@/lib/hashPassword";
 
 export async function POST(req: NextRequest) {
   try {

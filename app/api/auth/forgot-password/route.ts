@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateOtp } from "@/app/lib/utils/generateOtp";
-import { sendEmail } from "@/app/lib/utils/sendEmail";
-import { verifyJWT } from "@/app/lib/utils/verifyJWT";
+import { generateOtp } from "@/lib/generateOtp";
+import { sendEmail } from "@/lib/sendEmail";
+import { verifyJWT } from "@/lib/verifyJWT";
 import { cookies } from "next/headers";
-import prisma from "@/app/lib/utils/prismaClient";
+import prisma from "@/lib/prismaClient";
 import dotenv from "dotenv";
 
 dotenv.config();
