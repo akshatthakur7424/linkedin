@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AuthenticationNavbar from "./components/navigation-bar/authentication-navbar/page";
+import AuthenticationNavbar from "@/components/navigation-bar/authentication-navbar/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthenticationNavbar />
-        <div className="w-full h-auto flex flex-col items-center justify-center gap-2" >
+        <div className="bg-[#f3f2ef] w-full h-auto flex flex-col items-center justify-center gap-2" >
           {children}
         </div>
       </body>

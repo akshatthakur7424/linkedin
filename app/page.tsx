@@ -1,4 +1,4 @@
-import AuthenticationHeroSection from "./components/authentication/hero-section";
+import AuthenticationHeroSection from "../components/authentication/hero-section";
 
 export default function Home() {
   return (
