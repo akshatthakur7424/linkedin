@@ -54,12 +54,12 @@ export async function PATCH(req: NextRequest, { params }: { params: { postId: st
 }
 
 // DELETE /api/post/:id → Delete a post
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { postId: string } }) {
     try {
-        const { id: postId } = params;
+        const { postId } = params;
         const token = req.cookies.get("token")?.value;
 
-        if (!postId || typeof postId !== "string") {
+        if (!postId) {
             return NextResponse.json({ message: "Invalid post ID" }, { status: 400 });
         }
 

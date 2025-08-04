@@ -63,6 +63,7 @@ export default function Feeds() {
                                 <PostCard
                                     key={post.authorId + post.postId}
                                     content={post.content}
+                                    postId={post.postId}
                                     authorId={post.authorId}
                                     authorName={post.authorName}
                                     authorBio={post.authorBio}

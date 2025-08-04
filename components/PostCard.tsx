@@ -4,13 +4,14 @@ import React, { useState } from 'react'
 import PostDialog from './PostDialog';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { FaEllipsisH } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 
 interface PostCardProps {
     content: string;
+    postId: string
     authorId: string;
     authorName: string;
     authorBio: string;
@@ -20,28 +21,46 @@ interface PostCardProps {
 }
 
 const PostCard = (
-    { content, authorId, authorName, authorBio, authorImage, canEdit, refreshPosts }: PostCardProps
+    { content, postId, authorId, authorName, authorBio, authorImage, canEdit, refreshPosts }: PostCardProps
 ) => {
-    const [setContent] = useState(content);
+    const [textContent, setTextContent] = useState(content);
     const [isLoading, setIsLoading] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const handleUpdatePost = async () => {
         try {
             setIsLoading(true)
-            const response = await axios.post("/api/post/create", {
-                content: content,
+            const response = await axios.patch(`/api/post/${postId}`, {
+                content: textContent,
             });
             if (response.data.success) {
-                toast.success("Post published successfully!");
-                console.log("Post created:", response.data);
+                toast.success("Post updated successfully!");
+                console.log("Post updated:", response.data);
                 await refreshPosts();
             } else {
-                toast.error("Failed to create post: " + response.data.message);
-                console.error("Error creating post:", response.data.message);
+                toast.error("Failed to upadate post: " + response.data.message);
+                console.error("Error updating post:", response.data.message);
             }
         } catch (error: any) {
-            console.error("Error creating post:", error.response?.data || error.message);
+            console.error("Error updating post:", error.response?.data || error.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+    const handleDeletePost = async () => {
+        try {
+            setIsLoading(true)
+            const response = await axios.delete(`/api/post/${postId}`);
+            if (response.data.success) {
+                toast.success("Post deleted successfully!");
+                console.log("Post deleted:", response.data);
+                await refreshPosts();
+            } else {
+                toast.error("Failed to delete post: " + response.data.message);
+                console.error("Error deleting post:", response.data.message);
+            }
+        } catch (error: any) {
+            console.error("Error deleting post:", error.response?.data || error.message);
         } finally {
             setIsLoading(false);
         }
@@ -73,7 +92,11 @@ const PostCard = (
                                     <DropdownMenuItem className='cursor-pointer' onClick={() => setIsDialogOpen(true)}>
                                         <FaPen size={20} />Edit Post</DropdownMenuItem>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className='cursor-pointer' ><FaTrash size={20} />Delete Post</DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        className='cursor-pointer'
+                                        onClick={() => handleDeletePost()}
+                                    >
+                                        <FaTrash size={20} />Delete Post</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         )
@@ -83,8 +106,8 @@ const PostCard = (
                         open={isDialogOpen}
                         onOpenChange={setIsDialogOpen}
                         userName={authorName}
-                        content={content}
-                        setContent={setContent}
+                        content={textContent}
+                        setContent={setTextContent}
                         handlePost={handleUpdatePost}
                         isLoading={isLoading}
                         buttonText="Update Post"
