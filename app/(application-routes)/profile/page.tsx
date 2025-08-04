@@ -44,9 +44,11 @@ export default function Profile() {
     return (
         <div className="w-full h-full">
             <div className="w-full h-auto grid grid-cols-12 grid-rows-1 p-4">
-                <div className="h-full col-span-2"></div>
 
-                <div className="w-full h-auto col-span-6 bg-white flex flex-col items-center justify-start gap-4">
+                {/* Left Grid */}
+                <div className="hidden md:block h-full md:col-span-2"></div>
+
+                <div className="w-full h-auto md:col-span-6 col-span-full bg-white flex flex-col items-center justify-start gap-4">
                     <div className="w-full h-auto flex flex-col items-center justify-center">
                         {/* Banner and Profile Picture */}
                         <div className="w-full h-auto relative">
@@ -80,7 +82,7 @@ export default function Profile() {
                             </div>
 
                             {/* Edit Button */}
-                            <div className="h-full flex flex-col items-center justify-start">
+                            <div className="hidden h-full md:flex flex-col items-center justify-start">
                                 <ManageProfile
                                     initialName={userData?.data.name || ""}
                                     initialBio={userData?.data.bio || ""}
