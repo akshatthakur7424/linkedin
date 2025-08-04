@@ -48,9 +48,9 @@ export default function EmailVerification() {
     };
 
     return (
-        <div className="h-full w-full flex flex-col items-center justify-start gap-2 p-4">
+        <div className="h-full w-full flex flex-col items-center md:justify-start justify-center gap-2 p-4">
             {/* Signup Form */}
-            <div className="h-auto w-1/4 flex flex-col items-center justify-start bg-white rounded-md p-4 px-6">
+            <div className="h-auto md:w-1/4 w-full flex flex-col items-center justify-start bg-white rounded-md p-4 px-6">
                 {/* Heading */}
                 <div className="w-full flex flex-col items-start justify-start">
                     <p className="text-3xl font-semibold text-start py-2">Enter the 6-digit code</p>
