@@ -15,25 +15,29 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
+import UploadImage from "./UploadImage";
 
 interface ManageProfileProps {
     initialName: string;
     initialBio: string;
-    onSave: (updated: { name: string; bio: string }) => void;
+    profileImage: string;
+    onSave: (updated: { name: string; bio: string, image: string }) => void;
 }
 
-export function ManageProfile({ initialName, initialBio, onSave }: ManageProfileProps) {
+export function ManageProfile({ initialName, initialBio, profileImage, onSave }: ManageProfileProps) {
     const [name, setName] = useState(initialName);
     const [bio, setBio] = useState(initialBio);
+    const [image, setImage] = useState(profileImage)
 
     useEffect(() => {
         setName(initialName);
         setBio(initialBio);
+        setImage(profileImage)
     }, [initialName, initialBio]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSave({ name, bio });
+        onSave({ name, bio, image });
     };
 
     return (
@@ -68,6 +72,9 @@ export function ManageProfile({ initialName, initialBio, onSave }: ManageProfile
                                 value={bio}
                                 onChange={(e) => setBio(e.target.value)}
                             />
+                        </div>
+                        <div>
+                            <UploadImage imageUrl={image} />
                         </div>
                     </div>
                     <DialogFooter>

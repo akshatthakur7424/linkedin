@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -13,12 +13,14 @@ import {
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { UserDataContext } from '@/app/context/UserDataContextProvider'
 
 const CreatePost = (
     { refreshPosts }: { refreshPosts: () => void }
 ) => {
     const [content, setContent] = useState("");
     const [isLoading, setisLoading] = useState(false);
+    const userData = useContext(UserDataContext);
 
     const handlePost = async () => {
         try {
@@ -45,7 +47,7 @@ const CreatePost = (
         <div className='w-full h-auto flex items-center justify-between gap-2 p-4' >
             {/* Profile button */}
             <div className='h-12 w-12 rounded-full border' >
-                <img src="/path/to/profile-pic.jpg" alt="Profile" className="h-full w-full rounded-full object-cover" />
+                <img src={userData?.data.image || "/path/to/profile-pic.jpg"} alt="Profile" className="h-full w-full rounded-full object-cover" />
             </div>
 
             {/* Post creation form  */}

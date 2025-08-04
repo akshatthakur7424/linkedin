@@ -8,7 +8,7 @@ export async function PUT(req: NextRequest) {
     try {
         // accessing data
         const token = req.cookies.get("token")?.value;
-        const { name, bio } = await req.json();
+        const { name, bio, image } = await req.json();
 
         if (!token) {
             return NextResponse.json({ message: "Unauthorized: No token found" }, { status: 401 });
@@ -30,18 +30,13 @@ export async function PUT(req: NextRequest) {
             return NextResponse.json({ message: "Unauthorized: User not found" }, { status: 401 });
         }
 
-
-        // Validate input (basic check)
-        if (!name || !bio) {
-            return NextResponse.json({ message: "Name and email are required" }, { status: 400 });
-        }
-
         // Update the user record
         const updatedUser = await prisma.user.update({
             where: { email: userEmail },
             data: {
                 name,
                 bio,
+                image
             },
             select: {
                 name: true,

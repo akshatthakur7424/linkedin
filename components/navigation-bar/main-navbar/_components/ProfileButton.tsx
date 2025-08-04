@@ -1,5 +1,6 @@
 "use client"
 
+import { UserDataContext } from "@/app/context/UserDataContextProvider";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
 export function deleteTokenCookie(name: string) {
@@ -18,6 +20,7 @@ export function deleteTokenCookie(name: string) {
 
 export default function ProfileButton() {
     const router = useRouter();
+    const userData = useContext(UserDataContext);
 
     const handleLogout = async () => {
         await axios.post("/api/auth/delete-token");
@@ -32,7 +35,7 @@ export default function ProfileButton() {
                         {/* Profile Icon */}
                         <div className="rounded-full">
                             <img
-                                src="/images/profile.png"
+                                src={userData?.data.image || "/images/profile.png"}
                                 alt="profile"
                                 className="w-6 h-6 rounded-full object-cover"
                             />

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prismaClient";
 import { verifyJWTGetID } from "@/lib/verifyJWT";
 
-// Replace with your actual env var
 const JWT_SECRET = process.env.SECURITY_KEY || "";
 
 export async function POST(req: NextRequest) {
