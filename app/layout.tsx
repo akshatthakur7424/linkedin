@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AuthenticationNavbar from "@/components/navigation-bar/authentication-navbar/page";
 import { ToastProvider } from "@/components/providers/toaster-provider";
-import { UserContextProvider } from "./context/UserDataContextProvider";
-import { UserInitializer } from "@/components/context/UserInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +30,7 @@ export default function AuthenticationLayout({
       >
         <ToastProvider />
         <main>
-          <UserContextProvider>
-            <UserInitializer>
               {children}
-            </UserInitializer>
-          </UserContextProvider>
         </main>
       </body>
     </html >

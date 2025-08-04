@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import ApplicationNavbar from "@/components/navigation-bar/main-navbar/page";
 import { ToastProvider } from "@/components/providers/toaster-provider";
+import { UserInitializer } from "@/components/context/UserInitializer";
+import { UserContextProvider } from "../context/UserDataContextProvider";
 
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
     const cookieStore = await cookies();
@@ -13,13 +15,18 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
 
     return (
         <>
-            <ToastProvider />
-            <div className="w-screen h-screen flex flex-col justify-start items-center">
-                <ApplicationNavbar />
-                <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2">
-                    {children}
-                </div>
-            </div>
+            <UserContextProvider>
+                <UserInitializer>
+                    <ToastProvider />
+                    <div className="w-screen h-screen flex flex-col justify-start items-center">
+                        <ApplicationNavbar />
+                        <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2">
+                            {children}
+                        </div>
+                    </div>
+                </UserInitializer>
+            </UserContextProvider>
+
         </>
     );
 }
