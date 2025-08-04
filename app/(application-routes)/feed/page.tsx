@@ -66,6 +66,7 @@ export default function Feeds() {
                                     authorName={post.authorName}
                                     authorBio={post.authorBio}
                                     authorImage={post.authorImage}
+                                    refreshPosts={fetchPosts}
                                 />
                             ))
                         }
