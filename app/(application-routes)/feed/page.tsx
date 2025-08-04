@@ -43,14 +43,14 @@ export default function Feeds() {
             <div className="w-full h-auto grid grid-cols-12 grid-rows-1 p-4 " >
 
                 {/* Left grid - Profile  */}
-                <div className="h-full col-span-3 flex flex-col items-end justify-start px-2">
+                <div className="hidden h-full md:col-span-3 md:flex flex-col items-end justify-start px-2">
                     <div className="w-auto h-auto bg-white rounded-md border border-slate-200" >
                         <SmallProfileCard />
                     </div>
                 </div>
 
                 {/* Center grid - posts  */}
-                <div className="h-full col-span-6 flex flex-col items-center justify-start gap-4 px-4">
+                <div className="h-full md:col-span-6 col-span-full flex flex-col items-center justify-start gap-4 px-4">
                     {/* Create Post form */}
                     <div className="w-full h-auto bg-white rounded-md border border-slate-200" >
                         <CreatePost refreshPosts={fetchPosts} />
@@ -77,7 +77,7 @@ export default function Feeds() {
                 </div>
 
                 {/* Right grid*/}
-                <div className="h-full col-span-3"></div>
+                <div className="hidden md:block h-full md:col-span-3"></div>
 
             </div>
         </div>
