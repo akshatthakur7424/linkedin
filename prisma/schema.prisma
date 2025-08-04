@@ -14,7 +14,8 @@ model User {
   email     String   @unique
   password  String
   bio       String?
-  otp       Int? 
+  image     String?
+  otp       Int?
   posts     Post[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
