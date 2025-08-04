@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <ToastProvider />
             <div className="w-screen h-screen flex flex-col justify-start items-center" >
                 <AuthenticationNavbar />
-                <div className="bg-[#f3f2ef] w-full h-full flex flex-col items-center justify-center gap-2" >
+                <div className="bg-[#f3f2ef] w-svw h-svh flex flex-col items-center justify-center gap-2" >
                     {children}
                 </div>
             </div>

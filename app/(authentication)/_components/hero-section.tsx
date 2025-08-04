@@ -13,7 +13,7 @@ export default function AuthenticationHeroSection() {
     }
 
     return (
-        <div className="h-full flex flex-col md:flex-row md:items-center items-start md:justify-center justify-start md:gap-8 px-4 md:pr-16 py-10">
+        <div className="h-full flex flex-col md:flex-row md:items-center items-start md:justify-center justify-start md:gap-8 gap-4 px-4 md:pr-16 py-10">
             {/* Left Section  */}
             <div className="md:h-full h-1/3 w-full md:w-1/2 flex flex-col items-center md:items-start justify-start text-center md:text-left space-y-6">
 

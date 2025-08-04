@@ -8,9 +8,22 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { MdArrowDropDown } from "react-icons/md";
 
+export function deleteTokenCookie(name: string) {
+    document.cookie = `${name}=; Max-Age=0; path=/;`;
+}
+
 export default function ProfileButton() {
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        await axios.post("/api/auth/delete-token");
+        router.push("/signin");
+    };
+
     return (
         <>
             <DropdownMenu>
@@ -36,7 +49,11 @@ export default function ProfileButton() {
                     <DropdownMenuLabel>Profile short description</DropdownMenuLabel>
                     <DropdownMenuItem>Akshat Singh Thakur</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Sign Out</DropdownMenuItem>
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={handleLogout}
+                    >Sign Out
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
 
 
