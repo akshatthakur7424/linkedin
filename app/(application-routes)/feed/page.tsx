@@ -8,8 +8,18 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SmallProfileCard from "@/components/SmallProfileCard";
 
+interface Post {
+    authorId: string;
+    postId: string;
+    content: string;
+    authorName: string;
+    authorBio: string;
+    authorImage: string;
+    canEdit: boolean;
+}
+
 export default function Feeds() {
-    const [posts, setPosts] = useState([]);
+const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
