@@ -82,7 +82,7 @@ export default function SignUp() {
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-start gap-2 p-4">
-            <p className="text-3xl m-2 my-4">Make the most of your professional life</p>
+            <p className="text-3xl m-2 my-4 md:text-start text-center">Make the most of your professional life</p>
 
             <div className="h-auto w-full max-w-md flex flex-col items-center justify-start bg-white rounded-md p-6 shadow">
                 <Form {...form}>
