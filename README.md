@@ -58,10 +58,12 @@ This is a mini LinkedIn-style social app built using **Next.js** for both fronte
 - ✅ Authentication from scratch (no NextAuth)
 - ✅ JWT token management
 - ✅ Password hashing (bcrypt)
+- ✅ Form Validataion using React hook forms. 
+- ✅ Used Typescript for type safety. 
+- ✅ Sended only necessary data from the backend to increase perfomance of the system. 
 - ✅ Scalable & modular codebase
 - ✅ Responsive design (mobile to desktop)
 - ✅ Clean UI using shadcn + Tailwind
-- ✅ Form Validataion using React hook forms. 
 
 ---
 

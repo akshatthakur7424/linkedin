@@ -4,10 +4,9 @@ import { verifyJWTGetID } from "@/lib/verifyJWT";
 
 const JWT_SECRET = process.env.SECURITY_KEY || "";
 
-// PATCH /api/post/:id → Update a post
-export async function PATCH(req: NextRequest, { params }: { params: { postId: string } }) {
+export async function PATCH(req: NextRequest, context: { params: { postId: string } }) {
     try {
-        const { postId } = params;
+        const { postId } = context.params;
         const { content } = await req.json();
         const token = req.cookies.get("token")?.value;
 
@@ -53,10 +52,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { postId: st
     }
 }
 
-// DELETE /api/post/:id → Delete a post
-export async function DELETE(req: NextRequest, { params }: { params: { postId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { postId: string } }) {
     try {
-        const { postId } = params;
+        const { postId } = context.params;
         const token = req.cookies.get("token")?.value;
 
         if (!postId) {
