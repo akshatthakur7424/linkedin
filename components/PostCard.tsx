@@ -49,6 +49,7 @@ const PostCard = (
     }
     const handleDeletePost = async () => {
         try {
+            toast("Deleting post")
             setIsLoading(true)
             const response = await axios.delete(`/api/post/${postId}`);
             if (response.data.success) {

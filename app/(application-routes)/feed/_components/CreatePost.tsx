@@ -73,7 +73,7 @@ const CreatePost = (
                                         alt="Profile" className="h-full w-full rounded-full object-cover" />
                                 </div>
                                 <div className='flex flex-col gap-[2px]' >
-                                    <DialogTitle className='text-xl' >{userData?.data.name}</DialogTitle>
+                                    <DialogTitle className='text-xl' >{userData?.data.name || "your full name"}</DialogTitle>
                                     <DialogDescription>
                                         Post to Anyone.
                                     </DialogDescription>

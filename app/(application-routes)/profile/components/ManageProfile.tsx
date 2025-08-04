@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import UploadImage from "./UploadImage";
 
 import { FaPen } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 interface ManageProfileProps {
     initialName: string;
@@ -40,6 +41,7 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
 
     // query hitting function 
     const handleSubmit = (e: React.FormEvent) => {
+        toast("Updating profile details")
         e.preventDefault();
         onSave({ name, bio, image });
     };
