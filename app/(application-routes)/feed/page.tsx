@@ -6,6 +6,7 @@ import PostCard from "@/components/PostCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import SmallProfileCard from "@/components/SmallProfileCard";
 
 export default function Feeds() {
     const [posts, setPosts] = useState([]);
@@ -44,7 +45,7 @@ export default function Feeds() {
                 {/* Left grid - Profile  */}
                 <div className="h-full col-span-3 flex flex-col items-end justify-start px-2">
                     <div className="w-auto h-auto bg-white rounded-md border border-slate-200" >
-                        Profile card
+                        <SmallProfileCard />
                     </div>
                 </div>
 

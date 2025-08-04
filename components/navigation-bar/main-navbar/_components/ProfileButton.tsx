@@ -1,6 +1,7 @@
 "use client"
 
 import { UserDataContext } from "@/app/context/UserDataContextProvider";
+import SmallProfileCard from "@/components/SmallProfileCard";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -49,8 +50,10 @@ export default function ProfileButton() {
                     </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuLabel>Profile short description</DropdownMenuLabel>
-                    <DropdownMenuItem>Akshat Singh Thakur</DropdownMenuItem>
+                    <DropdownMenuLabel>My Profile</DropdownMenuLabel>
+                    <DropdownMenuItem>
+                        <SmallProfileCard/>
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                         className="cursor-pointer"
