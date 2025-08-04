@@ -14,7 +14,7 @@ import toast from "react-hot-toast"
 // custom imports
 import FileUpload from "@/components/FileUpload";
 
-export default function UploadImage(
+export default function UploadBanner(
     { imageUrl }: { imageUrl: string | null }
 ) {
     const assetUrl = imageUrl;
@@ -30,7 +30,7 @@ export default function UploadImage(
     const onSubmit = async ({ url, name }: { url: string, name: string }) => {
         toast.success("Updating Image, please wait!");
         try {
-            const data = { image: url };
+            const data = { banner: url };
             const response = await axios.put(`/api/user/update`, data);
             console.log("Image Updated: ", response.data, "Image Name: ", name);
             setImage(url);
@@ -49,7 +49,7 @@ export default function UploadImage(
                 <div className="flex items-center justify-between px-2" >
                     {/* Heading */}
                     <div>
-                        <p className="font-medium" >Profile Image</p>
+                        <p className="font-medium" >Banner Image</p>
                     </div>
 
                     {/* Image upadate control */}
@@ -79,7 +79,7 @@ export default function UploadImage(
                         isEditing ? (
                             <div className="w-full p-2" >
                                 <FileUpload endpoint="profileImage" onSubmit={onSubmit} />
-                                <p className="mt-2" >1:1 image size recommended</p>
+                                <p className="mt-2" >16:9 image size recommended</p>
                             </div>
                         ) : (
                             <div className={isEditing ? "hidden" : "w-full h-full p-2 text-sm block"} >

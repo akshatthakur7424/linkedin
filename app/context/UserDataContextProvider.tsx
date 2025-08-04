@@ -8,6 +8,7 @@ interface UserData {
   email: string;
   bio: string;
   image: string;
+  banner: string
 }
 
 // defining context type
@@ -26,6 +27,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
     email: "",
     bio: "",
     image: "",
+    banner: ""
   });
 
   return (

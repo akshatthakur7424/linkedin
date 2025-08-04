@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
                 bio: true,
                 email: true,
                 image: true,
+                banner: true
             },
         });
 

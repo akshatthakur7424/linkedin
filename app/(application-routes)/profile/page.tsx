@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ManageProfile } from "./components/ManageProfile";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { ManageBanner } from "./components/ManageBanner";
 
 export default function Profile() {
     const userData = useContext(UserDataContext);
@@ -51,7 +52,7 @@ export default function Profile() {
                         <div className="w-full h-auto relative">
                             <div className="w-full h-60 bg-slate-300 rounded-t-md">
                                 <img
-                                    src="/images/banner.jpg"
+                                    src={userData?.data.banner || "/images/banner.jpg"}
                                     alt="Banner"
                                     className="w-full h-32 object-cover rounded-t-md"
                                 />
@@ -62,6 +63,9 @@ export default function Profile() {
                                     alt="Profile"
                                     className="w-40 h-40 object-cover rounded-full border"
                                 />
+                            </div>
+                            <div className="absolute top-[2%] right-[2%]" >
+                                <ManageBanner initialBanner={userData?.data.banner || ""} />
                             </div>
                         </div>
 

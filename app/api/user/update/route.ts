@@ -8,7 +8,7 @@ export async function PUT(req: NextRequest) {
     try {
         // accessing data
         const token = req.cookies.get("token")?.value;
-        const { name, bio, image } = await req.json();
+        const { name, bio, image, banner } = await req.json();
 
         if (!token) {
             return NextResponse.json({ message: "Unauthorized: No token found" }, { status: 401 });
@@ -36,13 +36,15 @@ export async function PUT(req: NextRequest) {
             data: {
                 name,
                 bio,
-                image
+                image,
+                banner
             },
             select: {
                 name: true,
                 email: true,
                 bio: true,
                 image: true,
+                banner: true
             },
         });
 

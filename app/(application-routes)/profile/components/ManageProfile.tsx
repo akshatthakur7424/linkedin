@@ -56,6 +56,9 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
+                        <div>
+                            <UploadImage imageUrl={image} />
+                        </div>
                         <div className="grid gap-2">
                             <Label htmlFor="name">Name</Label>
                             <Input
@@ -72,9 +75,6 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
                                 value={bio}
                                 onChange={(e) => setBio(e.target.value)}
                             />
-                        </div>
-                        <div>
-                            <UploadImage imageUrl={image} />
                         </div>
                     </div>
                     <DialogFooter>

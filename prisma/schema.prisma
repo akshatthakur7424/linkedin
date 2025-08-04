@@ -15,6 +15,7 @@ model User {
   password  String
   bio       String?
   image     String?
+  banner    String?
   otp       Int?
   posts     Post[]
   createdAt DateTime @default(now())

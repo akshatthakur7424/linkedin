@@ -21,7 +21,7 @@ const SmallProfileCard = () => {
                 <div className="w-full h-auto relative">
                     <div className="w-full h-20 bg-slate-300 rounded-t-md">
                         <img
-                            src="/images/banner.jpg"
+                            src={userData?.data.banner || "/images/banner.jpg"}
                             alt="Banner"
                             className="w-full h-32 object-cover rounded-t-md"
                         />

@@ -14,6 +14,7 @@ export const UserInitializer = ({ children }: { children: React.ReactNode }) => 
                 const res = await axios.get("/api/user");
                 if (res.data.success) {
                     userData?.setData(res.data.user);
+                    console.log(res.data.user)
                 }
             } catch (err) {
                 console.error("Failed to fetch user data", err);

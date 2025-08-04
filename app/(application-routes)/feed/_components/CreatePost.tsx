@@ -65,10 +65,11 @@ const CreatePost = (
                         <DialogHeader>
                             <div className='w-full h-auto flex items-center justify-start gap-4' >
                                 <div className='h-16 w-16 rounded-full border' >
-                                    <img src="/path/to/profile-pic.jpg" alt="Profile" className="h-full w-full rounded-full object-cover" />
+                                    <img src={userData?.data.image || "/images/profile.jpg"}
+                                        alt="Profile" className="h-full w-full rounded-full object-cover" />
                                 </div>
                                 <div className='flex flex-col gap-[2px]' >
-                                    <DialogTitle className='text-xl' >User Name</DialogTitle>
+                                    <DialogTitle className='text-xl' >{userData?.data.name}</DialogTitle>
                                     <DialogDescription>
                                         Post to Anyone.
                                     </DialogDescription>
