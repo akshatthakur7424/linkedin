@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prismaClient";
-import { verifyJWT } from "@/lib/verifyJWT";
+import { verifyJWT, verifyJWTGetID } from "@/lib/verifyJWT";
 
 const JWT_SECRET = process.env.SECURITY_KEY || "";
 
@@ -45,6 +45,8 @@ export async function GET(req: NextRequest) {
             },
         });
 
+        const userId = verifyJWTGetID(token, JWT_SECRET);
+
         // Transforming the data
         const formattedPosts = posts.map((post) => ({
             content: post.content,
@@ -53,6 +55,7 @@ export async function GET(req: NextRequest) {
             authorName: post.author.name || "",
             authorBio: post.author.bio || "",
             authorImage: post.author.image || "",
+            canEdit: post.author.id === userId
         }));
 
         // Sending response

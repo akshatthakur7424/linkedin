@@ -14,12 +14,13 @@ interface PostCardProps {
     authorId: string;
     authorName: string;
     authorBio: string;
-    authorImage: string
+    authorImage: string;
+    canEdit: boolean;
     refreshPosts: () => void;
 }
 
 const PostCard = (
-    { content, authorId, authorName, authorBio, authorImage, refreshPosts }: PostCardProps
+    { content, authorId, authorName, authorBio, authorImage, canEdit, refreshPosts }: PostCardProps
 ) => {
     const [setContent] = useState(content);
     const [isLoading, setIsLoading] = useState(false);
@@ -62,17 +63,21 @@ const PostCard = (
                     </div>
                 </div>
                 <div>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <FaEllipsisH size={20} className='text-muted-foreground cursor-pointer' />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuItem className='cursor-pointer' onClick={() => setIsDialogOpen(true)}>
-                                <FaPen size={20} />Edit Post</DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem className='cursor-pointer' ><FaTrash size={20} />Delete Post</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    {
+                        canEdit && (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <FaEllipsisH size={20} className='text-muted-foreground cursor-pointer' />
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuItem className='cursor-pointer' onClick={() => setIsDialogOpen(true)}>
+                                        <FaPen size={20} />Edit Post</DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem className='cursor-pointer' ><FaTrash size={20} />Delete Post</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        )
+                    }
 
                     <PostDialog
                         open={isDialogOpen}

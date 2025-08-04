@@ -67,6 +67,7 @@ export default function Feeds() {
                                     authorName={post.authorName}
                                     authorBio={post.authorBio}
                                     authorImage={post.authorImage}
+                                    canEdit={post.canEdit}
                                     refreshPosts={fetchPosts}
                                 />
                             ))
