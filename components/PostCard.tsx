@@ -72,7 +72,7 @@ const PostCard = (
             <div className='w-full h-auto flex items-center justify-between px-2' >
                 <div className='w-full h-auto flex items-center justify-start gap-4' >
                     <div className='h-16 w-16 rounded-full border' >
-                        <img src={authorImage || "/profile.jpg"} alt="Profile" className="h-full w-full rounded-full object-cover" />
+                        <img src={authorImage || "/images/profile.jpg"} alt="Profile" className="h-full w-full rounded-full object-cover" />
                     </div>
                     <div className='flex flex-col gap-[2px]' >
                         <div className='text-xl' >{authorName}</div>

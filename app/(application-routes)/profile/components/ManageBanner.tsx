@@ -1,20 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
-import { FaPen } from "react-icons/fa6";
-import UploadImage from "./UploadImage";
 import UploadBanner from "./UploadBanner";
+
+import { FaPen } from "react-icons/fa6";
 
 interface ManageBannerProps {
     initialBanner: string;
@@ -23,6 +22,7 @@ interface ManageBannerProps {
 export function ManageBanner({ initialBanner }: ManageBannerProps) {
     const [banner, setBanner] = useState(initialBanner);
 
+    // storing current banner for rendering 
     useEffect(() => {
         setBanner(initialBanner);
     }, [initialBanner]);
@@ -43,6 +43,7 @@ export function ManageBanner({ initialBanner }: ManageBannerProps) {
                     </DialogDescription>
                 </DialogHeader>
 
+                {/* Upload banner component */}
                 <div className="py-4">
                     <UploadBanner imageUrl={banner} />
                 </div>

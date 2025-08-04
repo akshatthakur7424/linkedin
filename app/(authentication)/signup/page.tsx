@@ -26,6 +26,7 @@ import toast from "react-hot-toast";
 // form schema
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// form schema
 const formSchema = z.object({
     email: z
         .string()
@@ -51,10 +52,12 @@ export default function SignUp() {
 
     const { isValid, isSubmitting } = form.formState;
 
+    // navigation
     const handleSignIn = () => {
         router.push("/signin");
     };
 
+    // backend hitting function - signup
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {

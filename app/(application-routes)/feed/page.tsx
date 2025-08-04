@@ -1,12 +1,14 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator";
-import CreatePost from "./_components/CreatePost";
-import PostCard from "@/components/PostCard";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import axios from "axios";
+
+import CreatePost from "./_components/CreatePost";
+import { Separator } from "@/components/ui/separator";
+import PostCard from "@/components/PostCard";
 import SmallProfileCard from "@/components/SmallProfileCard";
+
+import toast from "react-hot-toast";
 
 interface Post {
     authorId: string;
@@ -19,13 +21,14 @@ interface Post {
 }
 
 export default function Feeds() {
-const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchPosts();
     }, [])
 
+    // fetching data
     const fetchPosts = async () => {
         try {
             setLoading(true);
@@ -50,7 +53,7 @@ const [posts, setPosts] = useState<Post[]>([]);
 
     return (
         <div className="w-full h-full">
-            <div className="w-full h-auto grid grid-cols-12 grid-rows-1 p-4 " >
+            <div className="w-full h-auto grid grid-cols-12 grid-rows-1 md:p-4 " >
 
                 {/* Left grid - Profile  */}
                 <div className="hidden h-full md:col-span-3 md:flex flex-col items-end justify-start px-2">
@@ -60,7 +63,7 @@ const [posts, setPosts] = useState<Post[]>([]);
                 </div>
 
                 {/* Center grid - posts  */}
-                <div className="h-full md:col-span-6 col-span-full flex flex-col items-center justify-start gap-4 px-4">
+                <div className="h-full md:col-span-6 col-span-full flex flex-col items-center justify-start gap-4 md:px-4">
                     {/* Create Post form */}
                     <div className="w-full h-auto bg-white rounded-md border border-slate-200" >
                         <CreatePost refreshPosts={fetchPosts} />

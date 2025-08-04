@@ -1,22 +1,26 @@
 "use client";
 
-import { UserDataContext } from "@/app/context/UserDataContextProvider";
 import { useContext, useEffect, useState } from "react";
-import { ManageProfile } from "./components/ManageProfile";
 import axios from "axios";
-import toast from "react-hot-toast";
+
+import { UserDataContext } from "@/app/context/UserDataContextProvider";
+import { ManageProfile } from "./components/ManageProfile";
 import { ManageBanner } from "./components/ManageBanner";
+
+import toast from "react-hot-toast";
 
 export default function Profile() {
     const userData = useContext(UserDataContext);
     const [isLoading, setIsLoading] = useState(true);
 
+    // loading till the data comes
     useEffect(() => {
         if (userData?.data?.name || userData?.data?.email) {
             setIsLoading(false);
         }
     }, [userData]);
 
+    // backend hitting function
     const handleSave = async (updatedData: { name: string; bio: string; image: string }) => {
         try {
             const response = await axios.put("/api/user/update", updatedData);
@@ -43,7 +47,7 @@ export default function Profile() {
 
     return (
         <div className="w-full h-full">
-            <div className="w-full h-auto grid grid-cols-12 grid-rows-1 p-4">
+            <div className="w-full h-auto grid grid-cols-12 grid-rows-1 md:p-4">
 
                 {/* Left Grid */}
                 <div className="hidden md:block h-full md:col-span-2"></div>
@@ -52,11 +56,11 @@ export default function Profile() {
                     <div className="w-full h-auto flex flex-col items-center justify-center">
                         {/* Banner and Profile Picture */}
                         <div className="w-full h-auto relative">
-                            <div className="w-full h-60 bg-slate-300 rounded-t-md">
+                            <div className="w-full h-52 bg-slate-300 md:rounded-t-md">
                                 <img
-                                    src={userData?.data.banner || "/images/banner.jpg"}
+                                    src={userData?.data.banner || "/images/banner.png"}
                                     alt="Banner"
-                                    className="w-full h-32 object-cover rounded-t-md"
+                                    className="w-full h-auto object-cover md:rounded-t-md"
                                 />
                             </div>
                             <div className="absolute top-[55%] left-[4%] rounded-full border cursor-pointer">
@@ -75,14 +79,14 @@ export default function Profile() {
                         <div className="w-full flex items-center justify-between mt-18 m-8 px-[4%]">
                             <div className="w-full h-auto flex flex-col items-start justify-center">
                                 <h1 className="text-2xl font-bold text-gray-800">
-                                    {userData?.data.name}
+                                    {userData?.data.name || "your full "}
                                 </h1>
-                                <p className="text-gray-600 mt-2">{userData?.data.bio}</p>
+                                <p className="text-gray-600 mt-2">{userData?.data.bio || "your profession"}</p>
                                 <p className="text-gray-600 mt-2">{userData?.data.email}</p>
                             </div>
 
                             {/* Edit Button */}
-                            <div className="hidden h-full md:flex flex-col items-center justify-start">
+                            <div className="h-full flex flex-col items-center justify-start">
                                 <ManageProfile
                                     initialName={userData?.data.name || ""}
                                     initialBio={userData?.data.bio || ""}

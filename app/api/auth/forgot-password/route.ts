@@ -1,17 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { generateOtp } from "@/lib/generateOtp";
 import { sendEmail } from "@/lib/sendEmail";
 import prisma from "@/lib/prismaClient";
+
 import jwt from "jsonwebtoken";
 
 export async function POST(req: NextRequest) {
     try {
+        // accessing data
         const { email } = await req.json();
 
         if (!email) {
             return NextResponse.json({ message: "Email is required" }, { status: 400 });
         }
 
+        // checking for user
         const user = await prisma.user.findUnique({
             where: { email },
         });
@@ -22,6 +26,7 @@ export async function POST(req: NextRequest) {
 
         const newOtp = generateOtp();
 
+        // updating otp
         await prisma.user.update({
             where: { email },
             data: { otp: newOtp },
@@ -29,6 +34,7 @@ export async function POST(req: NextRequest) {
 
         console.log("OTP updated in DB:", newOtp);
 
+        // sending mail
         await sendEmail(email, newOtp);
         console.log("Email sent to:", email);
 
@@ -41,9 +47,11 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Server misconfiguration" }, { status: 500 });
         }
 
-        const token = jwt.sign(tokenPayload, securityKey, { expiresIn: "10m" });
+        // cerating token
+        const token = jwt.sign(tokenPayload, securityKey, { expiresIn: "7d" });
         console.log("Generated JWT:", token);
 
+        // sending response
         return NextResponse.json({
             success: true,
             message: "OTP sent to email successfully.",

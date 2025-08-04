@@ -1,12 +1,14 @@
 import { redirect } from "next/navigation";
-import AuthenticationHeroSection from "./_components/hero-section";
 import { cookies } from "next/headers";
 
-export default async function Home() {
+import AuthenticationHeroSection from "./_components/hero-section";
 
+export default async function Home() {
+  // accessing token
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
 
+  // redirect if user is signed in
   if (token) {
     redirect("/feed");
   }

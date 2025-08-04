@@ -11,7 +11,7 @@ import { Pencil, PlusCircle, Image } from "lucide-react"
 import axios from "axios";
 import toast from "react-hot-toast"
 
-// custom imports
+// components imports
 import FileUpload from "@/components/FileUpload";
 
 export default function UploadBanner(
@@ -28,7 +28,8 @@ export default function UploadBanner(
     }
 
     const onSubmit = async ({ url, name }: { url: string, name: string }) => {
-        toast.success("Updating Image, please wait!");
+        toast.loading("Updating banner, please wait!")
+        // toast.success("Updating Image, please wait!");
         try {
             const data = { banner: url };
             const response = await axios.put(`/api/user/update`, data);
@@ -73,7 +74,7 @@ export default function UploadBanner(
                 </div>
 
 
-                {/* Uplaod Dropzone OR Image*/}
+                {/* Uplaod Image section */}
                 <div className="w-full h-auto flex items-center justify-center " >
                     {
                         isEditing ? (

@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useContext, useState } from 'react'
+import axios from 'axios'
+
 import {
     Dialog,
     DialogContent,
@@ -11,9 +13,10 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
-import axios from 'axios'
-import toast from 'react-hot-toast'
+
 import { UserDataContext } from '@/app/context/UserDataContextProvider'
+
+import toast from 'react-hot-toast'
 
 const CreatePost = (
     { refreshPosts }: { refreshPosts: () => void }
@@ -22,6 +25,7 @@ const CreatePost = (
     const [isLoading, setisLoading] = useState(false);
     const userData = useContext(UserDataContext);
 
+    // post creating function
     const handlePost = async () => {
         try {
             setisLoading(true)
@@ -61,7 +65,7 @@ const CreatePost = (
                     <DialogContent
                         className="w-full sm:max-w-[800px] md:max-w-[900px] h-[75vh] sm:h-[80vh]
                         flex flex-col items-start justify-between gap-4 p-6">
-                        {/* Title and description */}
+                        {/* User name and image */}
                         <DialogHeader>
                             <div className='w-full h-auto flex items-center justify-start gap-4' >
                                 <div className='h-16 w-16 rounded-full border' >
@@ -77,7 +81,7 @@ const CreatePost = (
                             </div>
                         </DialogHeader>
 
-                        {/* Post creation Form */}
+                        {/* Post - writing canvas */}
                         <div className='w-full h-full flex items-center justify-center' >
                             <textarea
                                 value={content}

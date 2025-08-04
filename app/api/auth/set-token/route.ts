@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     const { token } = await req.json();
-
-    // Create a new NextResponse object.
+    
     const response = NextResponse.json({ message: "Token set in cookie" });
 
     // Use the `cookies` property on the response to set the cookie.
@@ -17,7 +16,6 @@ export async function POST(req: NextRequest) {
         maxAge: 60 * 60 * 24 * 7, // 7 days
     });
 
-    // Return the response with the cookie set.
     return response;
 }
 

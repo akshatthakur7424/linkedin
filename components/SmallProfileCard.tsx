@@ -23,7 +23,7 @@ const SmallProfileCard = () => {
                         <img
                             src={userData?.data.banner || "/images/banner.jpg"}
                             alt="Banner"
-                            className="w-full h-32 object-cover rounded-t-md"
+                            className="w-full h-auto object-cover rounded-t-md"
                         />
                     </div>
                     <div className="absolute top-[55%] left-[4%] rounded-full border cursor-pointer">

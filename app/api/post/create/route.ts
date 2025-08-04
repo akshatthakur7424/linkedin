@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import prisma from "@/lib/prismaClient";
 import { verifyJWTGetID } from "@/lib/verifyJWT";
 
+// environment variable
 const JWT_SECRET = process.env.SECURITY_KEY || "";
 
 export async function POST(req: NextRequest) {
@@ -10,11 +12,10 @@ export async function POST(req: NextRequest) {
         const { content } = await req.json();
         const token = req.cookies.get("token")?.value;
 
-
-        if (!content || typeof content !== "string") {
+        // returning if missing data
+        if (!content) {
             return NextResponse.json({ message: "Invalid content" }, { status: 400 });
         }
-
         if (!token) {
             return NextResponse.json({ message: "Unauthorized: No token found" }, { status: 401 });
         }

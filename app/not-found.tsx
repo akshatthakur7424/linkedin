@@ -22,6 +22,7 @@ export default function NotFound() {
           The page you're looking for doesn’t exist or has been moved.
         </p>
 
+        {/* Go To Home */}
         <Link
           href="/feed"
           className="inline-block bg-sky-700 hover:bg-sky-800 text-white font-semibold py-2 px-6 rounded-full transition duration-300"

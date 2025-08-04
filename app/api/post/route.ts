@@ -9,11 +9,12 @@ export async function GET(req: NextRequest) {
         // accessing token
         const token = await req.cookies.get("token")?.value;
 
+        // returning if missing data
         if (!token) {
             return NextResponse.json({ message: "Unauthorized: No token found" }, { status: 401 });
         }
 
-        // verifying
+        // verifying user
         const userEmail = verifyJWT(token, JWT_SECRET);
 
         if (!userEmail) {
@@ -45,6 +46,7 @@ export async function GET(req: NextRequest) {
             },
         });
 
+        // verifying user
         const userId = verifyJWTGetID(token, JWT_SECRET);
 
         // Transforming the data

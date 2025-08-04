@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+
 import { verifyJWT } from "@/lib/verifyJWT";
 import prisma from "@/lib/prismaClient";
+
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,6 +13,7 @@ const SECRET_KEY = process.env.SECURITY_KEY || "";
 
 export async function POST(req: NextRequest) {
     try {
+        // accessing data
         const body = await req.json();
         const userEnteredOtp = body.otp;
 
@@ -46,6 +49,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        // matching otp and sending response
         if (user.otp === userEnteredOtp) {
             return NextResponse.json({
                 status: "success",

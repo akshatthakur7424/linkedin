@@ -3,8 +3,10 @@
 import { useRouter } from "next/navigation"
 
 export default function AuthenticationHeroSection() {
+    // hooks initialization
     const router = useRouter();
 
+    // navigating functions
     const handleSignUp = () => {
         router.push("/signup");
     }
@@ -44,12 +46,12 @@ export default function AuthenticationHeroSection() {
                     <button
                         onClick={handleSignUp}
                         className="text-blue-600 font-medium hover:underline cursor-pointer">
-                         Join now
+                        Join now
                     </button>
                 </p>
             </div>
 
-            {/* Right Section  */}
+            {/* Right Section - Hero Image */}
             <div className="md:h-full w-full md:w-1/2 mt-10 md:mt-0 flex flex-col items-center justify-start">
                 <img src="/authentication/hero-section.png" alt="LinkedIn Banner" className="h-auto w-full max-w-md md:max-w-full object-cover rounded" />
             </div>

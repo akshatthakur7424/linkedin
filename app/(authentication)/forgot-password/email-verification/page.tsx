@@ -1,14 +1,18 @@
 "use client"
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import axios from "axios";
+
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+
+import toast from "react-hot-toast";
 
 export default function EmailVerification() {
     const [otp, setOtp] = useState("");
     const router = useRouter();
+
+    // backend hitting function - resending otp
     const handleResendCode = async () => {
         try {
             const response = await axios.get("/api/auth/resend-otp");
@@ -21,8 +25,9 @@ export default function EmailVerification() {
         }
     };
 
+    // backend hitting function - matching otp
     const handleSubmit = async () => {
-        // Validate with regex: must be exactly 6 digits
+        // Validating with regex: must be exactly 6 digits
         const otpPattern = /^\d{6}$/;
 
         if (!otpPattern.test(otp)) {
@@ -80,6 +85,7 @@ export default function EmailVerification() {
                     Submit
                 </button>
 
+                {/* guiding message */}
                 <p className="text-muted-foreground text-sm">
                     If you don't see the email in your inbox, check your spam folder. If it's not
                     there, the email address may not be confirmed, or it may not match an existing

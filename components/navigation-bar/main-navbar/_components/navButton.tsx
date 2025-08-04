@@ -26,11 +26,11 @@ export default function NavbarButton(
             <button
                 className={cn(
                     "h-full p-2 cursor-pointer flex flex-col items-center justify-between",
-                    isActive && "border-b-2 border-black"
+                    isActive && "border-b-2 border-slate-600"
                 )}
                 onClick={handleNavigation}
             >
-                {Icon && <Icon className="text-3xl" />}
+                {Icon && <Icon className="text-3xl text-slate-600" />}
                 <p className="text-[12px]" >{name}</p>
             </button>
 

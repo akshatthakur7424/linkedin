@@ -1,13 +1,16 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import axios from "axios"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useForm } from "react-hook-form"
+
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+
 import toast from "react-hot-toast"
-import axios from "axios"
 
 // Zod schema
 const formSchema = z
@@ -25,6 +28,7 @@ const formSchema = z
 type ResetPasswordFormData = z.infer<typeof formSchema>;
 
 export default function ResetPassword() {
+    // hooks initialization
     const router = useRouter();
 
     const {
@@ -35,6 +39,7 @@ export default function ResetPassword() {
         resolver: zodResolver(formSchema),
     });
 
+    // backend hitting function - reseting password
     const onSubmit = async (data: ResetPasswordFormData) => {
         try {
             // You can include token verification here if needed (e.g., from URL params)

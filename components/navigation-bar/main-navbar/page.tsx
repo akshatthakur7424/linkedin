@@ -1,15 +1,17 @@
 "use client"
 
-import Image from "next/image";
 import { useRouter } from "next/navigation"
+import Image from "next/image";
+
 import NavbarButton from "./_components/navButton";
+import ProfileButton from "./_components/ProfileButton";
 
 import { FaHouse } from "react-icons/fa6";
-import ProfileButton from "./_components/ProfileButton";
 
 export default function ApplicationNavbar() {
     const router = useRouter();
 
+    // nav items list
     const navbarItems = [
         {
             name: "Home",
@@ -40,7 +42,7 @@ export default function ApplicationNavbar() {
                     ))
                 }
                 {/* Profile button */}
-                <div className="ml-4 flex items-center justify-center" >
+                <div className="ml-6 flex items-center justify-center" >
                     <ProfileButton />
                 </div>
             </div>

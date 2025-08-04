@@ -1,13 +1,16 @@
 "use client"
 
 import { useRouter } from "next/navigation";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import toast from "react-hot-toast";
 import axios from "axios";
+
+import toast from "react-hot-toast";
 
 // Zod schema
 const signInSchema = z.object({
@@ -19,6 +22,7 @@ const signInSchema = z.object({
 type SignInData = z.infer<typeof signInSchema>;
 
 export default function SignIn() {
+    // hook initialization
     const router = useRouter();
 
     const {
@@ -29,6 +33,7 @@ export default function SignIn() {
         resolver: zodResolver(signInSchema),
     });
 
+    // backend hitting function - signin
     const onSubmit = async (data: SignInData) => {
         try {
             const response = await axios.post("/api/auth/signin", data);
@@ -37,7 +42,7 @@ export default function SignIn() {
                 // Save token to cookie or wherever needed
                 await axios.post("/api/auth/set-token", { token });
                 toast.success("Signed in successfully!");
-                router.push("/feed");
+                router.push("/profile");
             } else {
                 toast.error(response.data.message || "Sign in failed. Try again.");
             }
@@ -46,6 +51,7 @@ export default function SignIn() {
         }
     };
 
+    // navigating 
     const handleSignUp = () => router.push("/signup");
     const handleForgotPassword = () => router.push("/forgot-password");
 

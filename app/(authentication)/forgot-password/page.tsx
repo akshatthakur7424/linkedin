@@ -1,15 +1,18 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useRouter } from "next/navigation"
-import toast from "react-hot-toast"
-import axios from "axios"
 
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 
+import toast from "react-hot-toast"
+
+// form schema
 const emailSchema = z.object({
     email: z
         .string()
@@ -20,6 +23,7 @@ const emailSchema = z.object({
 type ForgotPasswordFormData = z.infer<typeof emailSchema>
 
 export default function ForgotPassword() {
+    // hooks initialization
     const router = useRouter()
 
     const {
@@ -30,12 +34,13 @@ export default function ForgotPassword() {
         resolver: zodResolver(emailSchema),
     })
 
+    // backend hitting function - forgot password
     const onSubmit = async (data: ForgotPasswordFormData) => {
         console.log("Form data: ", data);
         try {
             const response = await axios.post(
                 "/api/auth/forgot-password",
-                JSON.stringify(data), // stringified JSON
+                JSON.stringify(data), 
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -58,7 +63,7 @@ export default function ForgotPassword() {
         }
     };
 
-
+    // navigating
     const handleBack = () => {
         router.push("/signin")
     }

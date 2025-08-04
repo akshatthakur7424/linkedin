@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -13,9 +15,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
-import { FaPen } from "react-icons/fa6";
 import UploadImage from "./UploadImage";
+
+import { FaPen } from "react-icons/fa6";
 
 interface ManageProfileProps {
     initialName: string;
@@ -29,12 +31,14 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
     const [bio, setBio] = useState(initialBio);
     const [image, setImage] = useState(profileImage)
 
+    // stroring current data for rendering
     useEffect(() => {
         setName(initialName);
         setBio(initialBio);
         setImage(profileImage)
     }, [initialName, initialBio]);
 
+    // query hitting function 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSave({ name, bio, image });
@@ -49,16 +53,23 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={handleSubmit}>
+
+                    {/* Headings */}
                     <DialogHeader>
                         <DialogTitle>Edit Profile</DialogTitle>
                         <DialogDescription>
                             Make changes to your profile here. Click save when you're done.
                         </DialogDescription>
                     </DialogHeader>
+
+                    {/* Main Controls - Editing/Managing */}
                     <div className="grid gap-4 py-4">
+                        {/* Image */}
                         <div>
                             <UploadImage imageUrl={image} />
                         </div>
+
+                        {/* Name */}
                         <div className="grid gap-2">
                             <Label htmlFor="name">Name</Label>
                             <Input
@@ -67,8 +78,10 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </div>
+
+                        {/* Bio */}
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email">Bio</Label>
                             <Input
                                 id="bio"
                                 type="text"
@@ -77,6 +90,8 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
                             />
                         </div>
                     </div>
+
+
                     <DialogFooter>
                         <DialogClose asChild>
                             <Button variant="outline" type="button">
@@ -87,6 +102,7 @@ export function ManageProfile({ initialName, initialBio, profileImage, onSave }:
                             <Button type="submit">Save</Button>
                         </DialogClose>
                     </DialogFooter>
+
                 </form>
             </DialogContent>
         </Dialog>

@@ -5,13 +5,15 @@ import { NextRequest } from "next/server";
 const f = createUploadthing();
 const JWT_SECRET = process.env.SECURITY_KEY || "";
 
+// user id obtaining function
 const handleAuth = async (ctx: { req: NextRequest }) => {
+    // accessing token
     const token = ctx.req.cookies.get("token")?.value;
-
     if (!token) {
         throw new Error("No token provided");
     }
 
+    // verifying user
     const userId = verifyJWTGetID(token, JWT_SECRET);
 
     if (!userId) {

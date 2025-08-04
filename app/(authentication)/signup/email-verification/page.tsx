@@ -1,15 +1,18 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { Input } from "@/components/ui/input";
+
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export default function EmailVerification() {
     const [otp, setOtp] = useState("");
     const router = useRouter();
 
+    // backend hitting function - resend otp
     const handleResendCode = async () => {
         try {
             const response = await axios.get("/api/auth/resend-otp");
@@ -22,6 +25,7 @@ export default function EmailVerification() {
         }
     };
 
+    // backend hitting function - match otp
     const handleSubmit = async () => {
         // Validate with regex: must be exactly 6 digits
         const otpPattern = /^\d{6}$/;
@@ -36,7 +40,7 @@ export default function EmailVerification() {
             console.log(response)
             if (response.data.status == "success") {
                 toast.success("Account created successfully!");
-                router.push("/feed")
+                router.push("/profile")
             } else {
                 toast.error("Incorrect OTP")
             }

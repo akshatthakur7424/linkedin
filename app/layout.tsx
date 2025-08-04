@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "LinkedIn",
-  description: "Mini linkedin to create and publish posts.",
+  description: "Mini linkedin to create, publish and manage posts.",
 };
 
 export default function AuthenticationLayout({

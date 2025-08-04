@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import prisma from "@/lib/prismaClient";
 import { generateOtp } from "@/lib/generateOtp";
 import { sendEmail } from "@/lib/sendEmail";
